@@ -1,0 +1,13 @@
+Makefile - 添加文件声明
+user/
+	trace.c, sysinfotest - 测试文件
+	user.h - 添加用户态函数的声明
+	usys.pl - 添加声，编译后生成 usys.S，通过 ecall 提供用户态向内核态的转换
+kernel/
+	syscall.h - 声明与系统调用对应的宏
+	syscall.c - 添加系统调用声明，完善函数指针表，添加函数名映射关系，类似中央处理器，在这里调用各种系统调用，修改其源代码以支持 trace
+	proc.h - 在进程控制信息表中增加 trace 所需要的 mask 变量	
+	sysproc.c - 实际实现系统调用
+	proc.c - trace 实验修改 fork()，sysinfo 实验添加新函数统计非 UNUSED 进程数目
+	kalloc.c - sysinfo 实验统计空闲内存数量
+	
