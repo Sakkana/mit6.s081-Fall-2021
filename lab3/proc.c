@@ -698,3 +698,30 @@ procdump(void)
     printf("\n");
   }
 }
+
+// lab 3 - page table
+int pgaccess(void* starting_va, int num, void* ans_buff)
+{
+  if (num <= 0) {
+    return -1;
+  }
+
+  // 获取当前进程的页表
+  pagetable_t pagetable = myproc()->pagetable;
+
+  uint64 mask;
+  for (int i = 0; i < num; ++ i) {
+    // vmprint(pagetable);
+    pte_t* pte;
+    pte = walk(pagetable, ((uint64)starting_va + (uint64)(PGSIZE) * i), 0);
+    
+    // 被访问过
+    if (*pte && (*pte & PTE_A)) {
+      mask |= 1 << i;
+      *pte ^= PTE_A;  // 清除 pte 的 PTE_A 属性
+    }
+  }
+  
+  copyout(pagetable, (uint64)ans_buff, (char*)&mask, sizeof(mask));
+  return 0;
+}

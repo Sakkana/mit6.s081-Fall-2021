@@ -9,5 +9,5 @@ lab3
 	- 2022.7.28
 
 	3) Detecting which pages have been accessedi
-	还在做ing...
+	在 sysproc.c 中添加系统调用，在 proc.c 中增加一个实现函数 pgaccess()
  
