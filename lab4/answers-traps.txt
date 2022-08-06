@@ -1,0 +1,6 @@
+1. a0-a7 contains arguments for function. a2 holds 13.
+2. No such  assembly cod because the compiler optimize the code into inline code. It calcuate the result and we can see 12 in assecbly code.
+3. 0x0000000000000628
+4. 0x0000000000000038. It contains the return value of the function main.
+5. It output He110 World. it will be 0x726c6400 if big endding.
+6. A trash value beacue the value in a2 register is a trash value to which we forget to pass the argument.

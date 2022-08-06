@@ -1,0 +1,14 @@
+lab4
+    1) RISC-V assembly
+    答案在 txt 里面。
+    - 2022.8.4
+    2) Backtrace
+    函数实现在 printf.c 中，在 riscv.h 中添加了一个取栈帧指针的内联汇编函数。
+    -2022.8.4
+    3)Alarm 
+    省略了 Makefile 和 user.h。就是用户态的函数声明罢了。
+    defs.h - 内核态系统调用声明
+    proc.h - 修改进程控制块
+    proc.c - 控制新添加变量的诞生与死亡
+    sysproc.c - 系统调用的具体实现
+    trap.c - 对于周期调用的逻辑实现
