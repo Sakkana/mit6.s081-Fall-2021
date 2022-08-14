@@ -1,0 +1,5 @@
+lab5
+    你虐我好惨啊啊
+    trap.c 修改异常判断条件，遇到 page fault + store instruction 走自己编写的写时复制处理函数
+    vm.c 编写 cow 函数进行内存复制，修改 uvmcopy() fork 之后不进行内存分配，修改 copyout 处理内核态拷贝到用户态防止修改 read-only 页面
+    kalloc.c 在 kalloc() 和 kfree() 中添加引用计数语句，在 freerange() 中对于 booting 时候调用 kfree 增加计数引用防止错误出现
