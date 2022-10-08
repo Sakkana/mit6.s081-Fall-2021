@@ -492,9 +492,18 @@ int cow_alloc(pagetable_t pagetable, uint64 va) {
 
   // not means free this page but decrease the reference count if > 1
   // if == 0, free it
-  kfree((void*)shared_pa);
+  //kfree((void*)shared_pa);
+  //*pte = PA2PTE(child_pa) | PTE_W | PTE_R | PTE_V | PTE_U | PTE_X;
 
-  *pte = PA2PTE(child_pa) | PTE_W | PTE_R | PTE_V | PTE_U | PTE_X;
+  // although the commented one is absolutely right
+  // but I'm much more prefer the following one
+  int flags = PTE_FLAGS(*pte) | PTE_W;
+  uvmunmap(pagetable, va, 1, 1);
+
+  if(mappages(pagetable, va, PGSIZE, child_pa, flags) < 0) {
+    kfree((void*)child_pa);
+    return -1;
+  }
 
   return 0;
 }
