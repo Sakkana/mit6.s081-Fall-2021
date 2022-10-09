@@ -14,6 +14,7 @@ struct entry {
   int value;
   struct entry *next;
 };
+
 struct entry *table[NBUCKET];
 int keys[NKEYS];
 int nthread = 1;
